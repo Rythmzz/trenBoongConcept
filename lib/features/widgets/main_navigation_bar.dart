@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainNavigationBar extends StatefulWidget {
-  final List<NavigationDestination> destinations;
+  final List<BottomNavigationBarItem> items;
   final NavigationDestinationLabelBehavior? labelBehavior;
   final int selectedIndex;
   final void Function(int index) onItemTap;
@@ -10,7 +10,7 @@ class MainNavigationBar extends StatefulWidget {
   const MainNavigationBar({
     Key? key,
     required this.onItemTap,
-    required this.destinations,
+    required this.items,
     this.selectedIndex = 0,
     this.backgroundColor,
     this.labelBehavior,
@@ -26,24 +26,25 @@ class _MainNavigationBar extends State<MainNavigationBar> {
   @override
   void initState() {
     super.initState();
-
     _selectedIndex = widget.selectedIndex;
   }
 
   @override
   Widget build(BuildContext context) {
-    return NavigationBar(
-      labelBehavior: widget.labelBehavior,
+    return BottomNavigationBar(
+      unselectedItemColor: Colors.red.shade400,
+      selectedItemColor: Colors.red.shade400,
+      selectedLabelStyle: null,
       backgroundColor: widget.backgroundColor,
-      selectedIndex: _selectedIndex,
-      onDestinationSelected: (int tappedIndex) {
+      currentIndex: _selectedIndex,
+      onTap: (int tappedIndex) {
+        print('data is: ' + tappedIndex.toString());
         setState(() {
           _selectedIndex = tappedIndex;
         });
-
         widget.onItemTap(tappedIndex);
       },
-      destinations: widget.destinations,
+      items: widget.items,
     );
   }
 }

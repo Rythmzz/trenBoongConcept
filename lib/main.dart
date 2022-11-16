@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_state.dart';
 import 'domain/bloc/authentication/authentication_bloc.dart';
@@ -8,6 +10,10 @@ import 'features/home/home.dart';
 import 'infrastructure/repository/user_repository.dart';
 
 void main() {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('lato_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['lato_fonts'], license);
+  });
   runApp(const MyApp());
 }
 

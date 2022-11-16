@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
+import '../widgets/utility_bar.dart';
+import 'home_screen.dart';
 
-import '../widgets/main_navigation_bar.dart';
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  int _currentPageIndex = 0;
+
+  void _changePage(int index) {
+    setState(() {
+      _currentPageIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('tren boong'),
-      ),
-      bottomNavigationBar: MainNavigationBar(
-        backgroundColor: Colors.blue.shade50,
-        onItemTap: (int tappedIndex) {
-          print('Tapped index: $tappedIndex');
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-      ),
-    );
+        key: _scaffoldKey,
+        bottomNavigationBar: UtilityBar(scaffoldKey: _scaffoldKey),
+        body: HomeScreen());
   }
 }

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_bloc.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
-import '../../home/home.dart';
 
 class Login_Screen extends StatefulWidget {
   const Login_Screen({super.key});
@@ -21,63 +20,25 @@ class _Login_ScreenState extends State<Login_Screen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+          padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    child: SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: Image.asset(
-                        "assets/image/logo.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 50,
-                    ),
-                  ),
-                ],
+              Image.asset(
+                "assets/image/logo.png",
+                width: 250,
+                height: 130,
               ),
+              SizedBox(height: 50),
               Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Welcome to Trên Boong",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            "Phone Number",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    Text('Đăng nhập',
+                        style: GoogleFonts.titilliumWeb(
+                            fontSize: 18, fontWeight: FontWeight.w700)),
+                    SizedBox(height: 5),
                     Form(
                       key: _formKey,
                       child: Column(
@@ -92,7 +53,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 ],
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 5),
+                                      vertical: 20, horizontal: 20),
                                   border: OutlineInputBorder(),
                                   hintText: ("Nhập số điện thoại"),
                                   //errorText: (""),
@@ -106,7 +67,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 },
                               )),
                           Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                              padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     primary: Colors.black12,
@@ -125,7 +86,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Checkbox(
                             shape: CircleBorder(),
@@ -135,6 +96,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 isChecked = !isChecked;
                               });
                             }),
+                        SizedBox(width: 5),
                         Flexible(
                           child: Text(
                             "I have read and accept the Terms of Service and Privacy Policy.",
