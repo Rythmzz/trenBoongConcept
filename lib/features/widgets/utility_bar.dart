@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../pop_up/list_card.dart';
 import 'pop_over.dart';
 
 class UtilityBar extends StatefulWidget {
@@ -47,7 +48,9 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 persistentBottomSheetController =
                     widget.scaffoldKey.currentState!.showBottomSheet(
                         transitionAnimationController: controller,
-                        (context) => Popover(child: Container()));
+                        (context) => Popover(
+                            child: ListCard(),
+                            color: Color.fromARGB(217, 153, 137, 106)));
               });
             },
           ),

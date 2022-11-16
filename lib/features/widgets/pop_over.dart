@@ -4,9 +4,11 @@ class Popover extends StatelessWidget {
   const Popover({
     Key? key,
     required this.child,
+    this.color,
   }) : super(key: key);
 
   final Widget child;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class Popover extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: theme.cardColor,
+        color: color,
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
       ),

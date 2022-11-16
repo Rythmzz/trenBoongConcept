@@ -16,7 +16,7 @@ class CardRepository {
       CardEntity(
           '3',
           'Sanji 1',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaJ1CNiDNe8AZHYJDrlkkPN6LdThRBzUENXs9B1N2JM9BiFWZsNsbsdRUj9VizvchzLz4&usqp=CAU',
+          'https://asia-en.onepiece-cardgame.com/images/cardlist/card/OP02-026.png?20221104',
           350000),
       CardEntity(
           '4',
@@ -34,5 +34,13 @@ class CardRepository {
           'https://asia-en.onepiece-cardgame.com/images/cardlist/card/OP02-001.png?20221104',
           350000)
     ];
+  }
+
+  CardEntity fetchRandomCardByUser(String id) {
+    return CardEntity(
+        '1',
+        'Luffy Strawhat 1',
+        'https://asia-en.onepiece-cardgame.com/images/cardlist/card/OP02-013.png?20221104',
+        350000);
   }
 }
