@@ -28,6 +28,7 @@ class _MainCardState extends State<MainCard> {
 
   @override
   Widget build(BuildContext context) {
+     
     return Container(child: _buildFlipAnimation(widget.urlImage));
   }
 

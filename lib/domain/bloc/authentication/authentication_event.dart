@@ -7,4 +7,8 @@ abstract class AuthenticationEvent extends Equatable {
 
 class CheckLoginEvent extends AuthenticationEvent {}
 
-class LoginByGoogleEvent extends AuthenticationEvent {}
+class LoginByPhoneNumberEvent extends AuthenticationEvent {
+  final String phoneNumb;
+
+  LoginByPhoneNumberEvent(this.phoneNumb);
+}

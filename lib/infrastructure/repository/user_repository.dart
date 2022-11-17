@@ -1,8 +1,9 @@
 import '../../domain/entity/user_entity.dart';
+import '../remote_source/user_service.dart';
 
 class UserRepository {
-  UserEntity? fetchUserById(String id) {
-    return UserEntity('0172612386543', 'Trnh Quo PHong');
+  Future<UserEntity?> fetchUserByPhoneNumber(String phoneNumb) async {
+    return await UserService.getUserByPhoneNumber(phoneNumb);
   }
 
   UserEntity? fetchAlreadyUser() {

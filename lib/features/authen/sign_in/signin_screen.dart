@@ -13,6 +13,7 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_ScreenState extends State<Login_Screen> {
+  String phoneNumb = '';
   bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
   @override
@@ -47,6 +48,9 @@ class _Login_ScreenState extends State<Login_Screen> {
                           SizedBox(
                               width: double.infinity,
                               child: TextFormField(
+                                onChanged: (text) {
+                                  this.phoneNumb = text;
+                                },
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.digitsOnly
@@ -76,9 +80,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   ),
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
-                                      context
-                                          .read<AuthenticationBloc>()
-                                          .add(LoginByGoogleEvent());
+                                      context.read<AuthenticationBloc>().add(
+                                          LoginByPhoneNumberEvent(phoneNumb));
                                     }
                                   },
                                   child: Text("Next"))),
