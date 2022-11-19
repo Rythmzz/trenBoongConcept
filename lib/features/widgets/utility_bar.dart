@@ -48,15 +48,13 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 persistentBottomSheetController =
                     widget.scaffoldKey.currentState!.showBottomSheet(
                         transitionAnimationController: controller,
-                        (context) => Popover(
-                            child: ListCard(),
-                            color: Color.fromARGB(217, 153, 137, 106)));
+                        (context) => Popover(child: ListCard()));
               });
             },
           ),
           IconButton(
             tooltip: ("Orders"),
-            icon: const Icon(Icons.shopping_bag),
+            icon: const Icon(Icons.shopping_bag), 
             onPressed: () {
               widget.scaffoldKey.currentState!
                   .showBottomSheet((context) => Popover(child: Container()));

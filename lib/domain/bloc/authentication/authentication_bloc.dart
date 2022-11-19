@@ -24,9 +24,11 @@ class AuthenticationBloc
     var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
     try {
       if (user != null) {
+        print('heheh');
         emit(AuthenticatedState(user));
       }
     } catch (e) {
+      print('hihihihi');
       emit(UnauthenticatedState());
     }
   }
