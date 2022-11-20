@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../infrastructure/repository/user_repository.dart';
 import 'authentication_event.dart';
@@ -24,11 +23,9 @@ class AuthenticationBloc
     var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
     try {
       if (user != null) {
-        print('heheh');
         emit(AuthenticatedState(user));
       }
     } catch (e) {
-      print('hihihihi');
       emit(UnauthenticatedState());
     }
   }

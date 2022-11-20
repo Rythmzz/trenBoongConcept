@@ -12,8 +12,6 @@ class Popover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
@@ -23,7 +21,7 @@ class Popover extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        children: [_buildHandle(context), if (child != null) child],
+        children: [_buildHandle(context), child],
       ),
     );
   }
