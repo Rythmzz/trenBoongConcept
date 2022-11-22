@@ -8,7 +8,11 @@ class CategoryEntity {
 
   factory CategoryEntity.fromJson(Map<String, dynamic> json) {
     final attributes = json['attributes'];
-    return CategoryEntity(
-        id: 'èwefwefwef', name: 'ưefwef', imageUrl: 'ưefwefwef');
+    var c = CategoryEntity(
+        id: json['id'].toString(),
+        name: attributes['name'],
+        imageUrl: attributes['urlImage']);
+
+    return c;
   }
 }

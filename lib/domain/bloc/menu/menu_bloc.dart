@@ -11,9 +11,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     on<LoadMenuEvent>((event, emit) async {
       emit(MenuLoadingState());
       try {
-        //do something
-        await Future.delayed(const Duration(seconds: 1));
-        var products = _productRepository.getAllProduct();
+        var products = await _productRepository.getAllProduct();
         emit(MenuLoadSuccessState(products));
       } catch (e) {
         //do something

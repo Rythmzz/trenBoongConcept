@@ -6,27 +6,30 @@ import 'api_constant.dart';
 import 'package:http/http.dart' as http;
 
 class ProductService {
-  static Future<List<CategoryProductsEntity>?> getAllCategoryProducts() async {
+  static Future<List<ProductEntity>> getProductsByCategoryId(String id) async {
     try {
+      //url sort by category
       var url = Uri.parse(
-          '${ApiConstant.baseUrl}${ApiConstant.usersEndpoint}?populate=*');
+          '${ApiConstant.baseUrl}${ApiConstant.productsEndpoint}?filters[drink][drink_category][id][\$eq]=${id}&populate=deep,3');
+      print(url);
       var response = await http.get(url);
       if (response.statusCode == 200) {
-        List<CategoryProductsEntity>? card = praseUserFromJson(response.body);
-        return card;
+        List<ProductEntity> products = praseUserFromJson(response.body);
+        print('ne nên ');
+        return products;
       }
     } catch (e) {
-      //log(e.toString());
+      print(e);
     }
-    return null;
+    return [];
   }
 
-  static List<CategoryProductsEntity> praseUserFromJson(String json) {
+  static List<ProductEntity> praseUserFromJson(String json) {
     Map<String, dynamic> parsed = jsonDecode(json);
-    final cards = parsed['data'][0];
-    return cards.map((card) => CategoryProductsEntity(
-        category: CategoryEntity.fromJson(card['category']),
-        products: card['products']
-            .map((product) => ProductEntity.fromJson(product))));
+    final productsJson = parsed['data'];
+    List<ProductEntity> products = [];
+    productsJson
+        .forEach((product) => products.add(ProductEntity.fromJson(product)));
+    return products;
   }
 }

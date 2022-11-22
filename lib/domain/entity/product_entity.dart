@@ -10,8 +10,18 @@ class ProductEntity {
       required this.imgUrl,
       required this.price});
   factory ProductEntity.fromJson(Map<String, dynamic> json) {
-    final attributes = json['attributes'];
+    print(json);
+    final product = json['attributes'];
+    final drink = product['drink'];
+    print(json['id'].toString() +
+        ', ' +
+        drink['data']['attributes']['name'] +
+        ', ' +
+        drink['data']['attributes']['urlImage']);
     return ProductEntity(
-        id: 'èwefwefwef', name: 'ưefwef', imgUrl: 'ưefwefwef', price: 213213);
+        id: json['id'].toString(),
+        name: drink['data']['attributes']['name'],
+        imgUrl: drink['data']['attributes']['urlImage'],
+        price: int.parse(product['price']));
   }
 }
