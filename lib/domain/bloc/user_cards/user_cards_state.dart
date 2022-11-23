@@ -16,7 +16,7 @@ class CardsLoadingState extends UserCardsState {}
 class CardsLoadSuccessState extends UserCardsState {
   final List<CardEntity> cards;
 
-  CardsLoadSuccessState(this.cards);
+  const CardsLoadSuccessState(this.cards);
 }
 
 class CardsLoadFailState extends UserCardsState {}

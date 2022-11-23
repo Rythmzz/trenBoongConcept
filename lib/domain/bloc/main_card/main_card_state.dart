@@ -14,7 +14,7 @@ class CardLoadingState extends MainCardState {}
 
 class CardLoadSuccessState extends MainCardState {
   final CardEntity card;
-  CardLoadSuccessState(this.card);
+  const CardLoadSuccessState(this.card);
 }
 
 class CardLoadFailState extends MainCardState {}

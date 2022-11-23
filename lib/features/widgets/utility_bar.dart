@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pop_up/list_card.dart';
+import '../pop_up/menu.dart';
 import 'pop_over.dart';
 
 class UtilityBar extends StatefulWidget {
@@ -20,7 +21,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
   initState() {
     super.initState();
     controller = BottomSheet.createAnimationController(this);
-    controller.duration = Duration(milliseconds: 500);
+    controller.duration = const Duration(milliseconds: 500);
   }
 
   @override
@@ -31,12 +32,13 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (persistentBottomSheetController != null) {
-      persistentBottomSheetController!.closed
-          .then((value) => print('close ne ck'));
-    }
+    // if (persistentBottomSheetController != null) {
+    //   persistentBottomSheetController!.closed
+    //       .then((value) => print('close ne ck'));
+    // }
     return Container(
       height: 60,
+      color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -47,17 +49,16 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
               setState(() {
                 persistentBottomSheetController =
                     widget.scaffoldKey.currentState!.showBottomSheet(
-                        transitionAnimationController: controller,
-                        (context) => Popover(child: ListCard()));
+                        (context) => const Popover(child: ListCard()));
               });
             },
           ),
           IconButton(
             tooltip: ("Orders"),
-            icon: const Icon(Icons.shopping_bag), 
+            icon: const Icon(Icons.shopping_bag),
             onPressed: () {
               widget.scaffoldKey.currentState!
-                  .showBottomSheet((context) => Popover(child: Container()));
+                  .showBottomSheet((context) => Popover(child: MenuPopup()));
             },
             // child: Text("Orders")
           ),

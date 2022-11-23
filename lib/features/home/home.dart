@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/bloc/main_card/main_card_bloc.dart';
 import '../../domain/bloc/main_card/main_card_event.dart';
-import '../../domain/bloc/main_card/main_card_state.dart';
+import '../../domain/bloc/order/order_bloc.dart';
+import '../../domain/bloc/order/order_event.dart';
 import '../../infrastructure/repository/card_repository.dart';
+import '../../infrastructure/repository/order_repository.dart';
+import '../order/short_order_bar.dart';
 import '../widgets/utility_bar.dart';
 import 'home_screen.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -26,16 +29,29 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => CardRepository(),
-      child: BlocProvider<MainCardBloc>(
-          create: (context) =>
-              MainCardBloc(cardRepository: context.read<CardRepository>())
-                ..add(GetCardEvent()),
-          child: Scaffold(
-              key: _scaffoldKey,
-              bottomNavigationBar: UtilityBar(scaffoldKey: _scaffoldKey),
-              body: HomeScreen())),
-    );
+    return MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<CardRepository>(
+              create: (context) => CardRepository()),
+          RepositoryProvider<OrderRepository>(
+              create: (context) => OrderRepository())
+        ],
+        child: MultiBlocProvider(
+            providers: [
+              BlocProvider<MainCardBloc>(
+                  create: (context) => MainCardBloc(
+                      cardRepository: context.read<CardRepository>())
+                    ..add(GetCardEvent())),
+              BlocProvider<OrderBloc>(
+                  create: (context) => OrderBloc(
+                      orderrepository: context.read<OrderRepository>())
+                    ..add(LoadOrderEvent()))
+            ],
+            child: Scaffold(
+                key: _scaffoldKey,
+                persistentFooterAlignment: AlignmentDirectional.bottomCenter,
+                persistentFooterButtons: [ShortOrderBar()],
+                bottomNavigationBar: UtilityBar(scaffoldKey: _scaffoldKey),
+                body: const HomeScreen())));
   }
 }

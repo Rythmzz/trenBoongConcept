@@ -29,9 +29,9 @@ class HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     colorFilter: ColorFilter.mode(
-                        Color.fromARGB(99, 153, 137, 106).withOpacity(1),
+                        const Color.fromARGB(99, 153, 137, 106).withOpacity(1),
                         BlendMode.color),
-                    image: AssetImage("assets/image/main-background.png"),
+                    image: const AssetImage("assets/image/main-background.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -43,9 +43,9 @@ class HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 colorFilter: ColorFilter.mode(
-                    Color.fromARGB(99, 153, 137, 106).withOpacity(1),
+                    const Color.fromARGB(99, 153, 137, 106).withOpacity(1),
                     BlendMode.color),
-                image: AssetImage("assets/image/main-background.png"),
+                image: const AssetImage("assets/image/main-background.png"),
                 fit: BoxFit.cover,
               ),
             ),

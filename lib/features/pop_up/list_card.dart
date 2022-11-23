@@ -33,9 +33,8 @@ class ListCardState extends State<ListCard> {
         child: BlocBuilder<UserCardsBloc, UserCardsState>(
           builder: (BuildContext context, UserCardsState state) {
             if (state is CardsLoadSuccessState) {
-              return Container(
-                  child: Expanded(
-                      child: ListView.builder(
+              return Expanded(
+                  child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: state.cards.length,
                 itemBuilder: (context, index) {
@@ -43,7 +42,7 @@ class ListCardState extends State<ListCard> {
 
                   return _buildCard(item);
                 },
-              )));
+              ));
             }
 
             return Container();
@@ -58,7 +57,7 @@ class ListCardState extends State<ListCard> {
           Navigator.pop(context);
         },
         child: Container(
-            margin: EdgeInsets.only(top: 35),
+            margin: const EdgeInsets.only(top: 35),
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(5.0)),

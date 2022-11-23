@@ -31,7 +31,6 @@ class MainCardBloc extends Bloc<MainCardEvent, MainCardState> {
 
   FutureOr<void> changeCard(
       ChangeCardEvent event, Emitter<MainCardState> state) async {
-    print('change roi ne');
     emit(CardLoadingState());
     try {
       emit(CardLoadSuccessState(event.card));

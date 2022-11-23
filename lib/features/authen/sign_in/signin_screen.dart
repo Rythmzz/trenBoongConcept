@@ -5,14 +5,14 @@ import 'package:tren_boong_concept/domain/bloc/authentication/authentication_blo
 import 'package:google_fonts/google_fonts.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
 
-class Login_Screen extends StatefulWidget {
-  const Login_Screen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<Login_Screen> createState() => _Login_ScreenState();
+  State<LoginScreen> createState() => LoginScreenState();
 }
 
-class _Login_ScreenState extends State<Login_Screen> {
+class LoginScreenState extends State<LoginScreen> {
   String phoneNumb = '';
   bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
@@ -31,110 +31,104 @@ class _Login_ScreenState extends State<Login_Screen> {
                 width: 250,
                 height: 130,
               ),
-              SizedBox(height: 50),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Đăng nhập',
-                        style: GoogleFonts.titilliumWeb(
-                            fontSize: 18, fontWeight: FontWeight.w700)),
-                    SizedBox(height: 5),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                              width: double.infinity,
-                              child: TextFormField(
-                                onChanged: (text) {
-                                  this.phoneNumb = text;
-                                },
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  border: OutlineInputBorder(),
-                                  hintText: ("Nhập số điện thoại"),
-                                  //errorText: (""),
-                                ),
-                                // The validator receives the text that the user has entered.
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Vui lòng nhập đúng số điện thoại';
-                                  }
-                                  return null;
-                                },
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Colors.black12,
-                                    minimumSize:
-                                        const Size.fromHeight(50), // NEW
-                                  ),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      context.read<AuthenticationBloc>().add(
-                                          LoginByPhoneNumberEvent(phoneNumb));
-                                    }
-                                  },
-                                  child: Text("Next"))),
-                        ],
-                      ),
-                    ),
-                    Row(
+              const SizedBox(height: 50),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Đăng nhập',
+                      style: GoogleFonts.titilliumWeb(
+                          fontSize: 18, fontWeight: FontWeight.w700)),
+                  const SizedBox(height: 5),
+                  Form(
+                    key: _formKey,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Checkbox(
-                            shape: CircleBorder(),
-                            value: isChecked,
-                            onChanged: (k) {
-                              setState(() {
-                                isChecked = !isChecked;
-                              });
-                            }),
-                        SizedBox(width: 5),
-                        Flexible(
-                          child: Text(
-                            "I have read and accept the Terms of Service and Privacy Policy.",
-                            overflow: TextOverflow.visible,
-                            textDirection: TextDirection.ltr,
-                            textAlign: TextAlign.start,
-                            // maxLines: 2,
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        )
+                        SizedBox(
+                            width: double.infinity,
+                            child: TextFormField(
+                              onChanged: (text) {
+                                phoneNumb = text;
+                              },
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 20),
+                                border: OutlineInputBorder(),
+                                hintText: ("Nhập số điện thoại"),
+                                //errorText: (""),
+                              ),
+                              // The validator receives the text that the user has entered.
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Vui lòng nhập đúng số điện thoại';
+                                }
+                                return null;
+                              },
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size.fromHeight(50), // NEW
+                                ),
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    context.read<AuthenticationBloc>().add(
+                                        LoginByPhoneNumberEvent(phoneNumb));
+                                  }
+                                },
+                                child: const Text("Next"))),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                          shape: const CircleBorder(),
+                          value: isChecked,
+                          onChanged: (k) {
+                            setState(() {
+                              isChecked = !isChecked;
+                            });
+                          }),
+                      const SizedBox(width: 5),
+                      const Flexible(
+                        child: Text(
+                          "I have read and accept the Terms of Service and Privacy Policy.",
+                          overflow: TextOverflow.visible,
+                          textDirection: TextDirection.ltr,
+                          textAlign: TextAlign.start,
+                          // maxLines: 2,
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      )
+                    ],
+                  )
+                ],
               ),
               Expanded(child: Container()),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: Text("Or"),
-                ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text("Or"),
               ),
 
               ///button Google Sign
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: OutlinedButton.icon(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.android,
                       size: 24,
                     ),
-                    label: Text(
+                    label: const Text(
                       "Login With Google",
                       style: TextStyle(color: Colors.black),
                     ),

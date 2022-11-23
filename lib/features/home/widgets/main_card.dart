@@ -1,10 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../domain/bloc/main_card/main_card_bloc.dart';
-import '../../../domain/bloc/main_card/main_card_state.dart';
 
 class MainCard extends StatefulWidget {
   final String urlImage;
@@ -28,14 +23,7 @@ class _MainCardState extends State<MainCard> {
 
   @override
   Widget build(BuildContext context) {
-     
     return Container(child: _buildFlipAnimation(widget.urlImage));
-  }
-
-  void _changeRotationAxis() {
-    setState(() {
-      _flipXAxis = !_flipXAxis!;
-    });
   }
 
   void _switchCard() {
@@ -48,12 +36,12 @@ class _MainCardState extends State<MainCard> {
     return GestureDetector(
       onTap: _switchCard,
       child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 800),
+        duration: const Duration(milliseconds: 800),
         transitionBuilder: __transitionBuilder,
         layoutBuilder: (widget, list) => Stack(children: [widget!, ...list]),
-        child: _showFrontSide! ? _buildRear() : _buildFront(url),
         switchInCurve: Curves.easeInBack,
         switchOutCurve: Curves.easeInBack.flipped,
+        child: _showFrontSide! ? _buildRear() : _buildFront(url),
       ),
     );
   }
@@ -73,8 +61,8 @@ class _MainCardState extends State<MainCard> {
           transform: _flipXAxis!
               ? (Matrix4.rotationY(value)..setEntry(3, 0, tilt))
               : (Matrix4.rotationX(value)..setEntry(3, 1, tilt)),
-          child: widget,
           alignment: Alignment.center,
+          child: widget,
         );
       },
     );
@@ -82,7 +70,7 @@ class _MainCardState extends State<MainCard> {
 
   Widget _buildFront(String url) {
     return __buildLayout(
-        key: ValueKey(true),
+        key: const ValueKey(true),
         backgroundColor: Colors.blue,
         faceName: "Front",
         child: Container(
@@ -98,13 +86,13 @@ class _MainCardState extends State<MainCard> {
 
   Widget _buildRear() {
     return __buildLayout(
-        key: ValueKey(false),
+        key: const ValueKey(false),
         backgroundColor: Colors.blue.shade700,
         faceName: "Rear",
         child: Container(
             height: 450,
             width: 270,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/image/charecter_card/back-side.png"),
                 fit: BoxFit.fill,

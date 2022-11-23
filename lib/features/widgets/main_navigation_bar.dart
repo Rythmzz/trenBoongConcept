@@ -38,7 +38,6 @@ class _MainNavigationBar extends State<MainNavigationBar> {
       backgroundColor: widget.backgroundColor,
       currentIndex: _selectedIndex,
       onTap: (int tappedIndex) {
-        print('data is: ' + tappedIndex.toString());
         setState(() {
           _selectedIndex = tappedIndex;
         });
