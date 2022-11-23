@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entity/order_entity.dart';
+import '../../utility/order_format.dart';
 
 class TotalPrice extends StatelessWidget {
   final OrderEntity order;
@@ -26,11 +27,8 @@ class TotalPrice extends StatelessWidget {
   }
 
   String generatePrice(OrderEntity order) {
-    int total = 0;
-    order.orderDetails.forEach((element) {
-      total += element.totalPrice;
-    });
-    return total.toString() + 'đ';
+    return OrderFormat.vndFormat(order.totalPrice);
+    ;
   }
 }
 

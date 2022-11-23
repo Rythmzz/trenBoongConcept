@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/bloc/order/order_bloc.dart';
+import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_entity.dart';
+import '../../utility/order_format.dart';
+import 'order_result.dart';
 
-class ConfirmBar extends StatelessWidget {
+class ConfirmOrder extends StatelessWidget {
   final OrderBloc orderBloc;
-  const ConfirmBar({super.key, required this.orderBloc});
+  const ConfirmOrder({super.key, required this.orderBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,12 @@ class ConfirmBar extends StatelessWidget {
             ),
             Spacer(),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  orderBloc.add(EmitOrder());
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context1) =>
+                          OrderResult(orderBloc: orderBloc)));
+                },
                 child: Container(
                     height: 34,
                     width: 100,
@@ -59,10 +68,6 @@ class ConfirmBar extends StatelessWidget {
   }
 
   String generateTotalPrice(OrderEntity order) {
-    int total = 0;
-    order.orderDetails.forEach((element) {
-      total += element.totalPrice;
-    });
-    return total.toString() + 'đ';
+    return OrderFormat.vndFormat(order.totalPrice);
   }
 }

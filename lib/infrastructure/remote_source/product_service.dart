@@ -11,11 +11,9 @@ class ProductService {
       //url sort by category
       var url = Uri.parse(
           '${ApiConstant.baseUrl}${ApiConstant.productsEndpoint}?filters[drink][drink_category][id][\$eq]=${id}&populate=deep,3');
-      print(url);
       var response = await http.get(url);
       if (response.statusCode == 200) {
         List<ProductEntity> products = praseUserFromJson(response.body);
-        print('ne nên ');
         return products;
       }
     } catch (e) {

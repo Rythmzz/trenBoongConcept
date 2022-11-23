@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/category_products_entity.dart';
+import '../../utility/order_format.dart';
 
 class MenuProduct extends StatelessWidget {
   const MenuProduct({super.key, required this.categories});
@@ -43,7 +44,7 @@ class MenuProduct extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       fontSize: 16,
                                       height: 1.8)),
-                              Text(item.price.toString() + 'đ',
+                              Text(OrderFormat.vndFormat(item.price),
                                   style: TextStyle(fontSize: 16, height: 1.4))
                             ]))
                       ],

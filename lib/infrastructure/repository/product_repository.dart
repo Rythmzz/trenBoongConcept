@@ -8,7 +8,6 @@ class ProductRepository {
     List<CategoryProductsEntity> products = [];
     List<CategoryEntity> categories =
         await DrinkCategoryService.getAllCategory();
-    print(categories.length);
 
     await Future.wait(categories.map((category) async => {
           products.add(CategoryProductsEntity(
@@ -16,7 +15,6 @@ class ProductRepository {
               products:
                   await ProductService.getProductsByCategoryId(category.id)))
         }));
-    print(categories.length);
     return products;
   }
 }

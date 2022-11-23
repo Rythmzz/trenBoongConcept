@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/bloc/order/order_bloc.dart';
-import 'confirm_bar.dart';
+import 'confirm_order.dart';
 import 'detail_products.dart';
 import 'total_price.dart';
 

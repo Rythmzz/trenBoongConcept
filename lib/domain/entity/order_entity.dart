@@ -1,10 +1,14 @@
 import 'order_detail_entity.dart';
 
 class OrderEntity {
+  final String userId;
   final List<OrderDetailEntity> orderDetails;
   final DateTime? dateTime;
-  final int totalPrice;
+  int totalPrice;
 
   OrderEntity(
-      {this.dateTime, required this.orderDetails, required this.totalPrice});
+      {required this.userId,
+      this.dateTime,
+      required this.orderDetails,
+      required this.totalPrice});
 }

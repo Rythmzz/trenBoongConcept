@@ -14,8 +14,6 @@ class AddProductItem extends OrderEvent {
   AddProductItem(this.product);
 }
 
-class IncreaseProductItem extends OrderEvent {}
-
 class ModifyOrderMethod extends OrderEvent {
   final int methodId;
 

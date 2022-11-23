@@ -11,7 +11,6 @@ class DrinkCategoryService {
       var response = await http.get(url);
       if (response.statusCode == 200) {
         List<CategoryEntity> card = praseCardFromJson(response.body);
-        print('non nun no nu');
         return card;
       }
     } catch (e) {

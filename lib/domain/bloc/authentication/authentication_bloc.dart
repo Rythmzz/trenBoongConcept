@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../infrastructure/repository/user_repository.dart';
+import '../../../utility/save_data.dart';
 import 'authentication_event.dart';
 import 'authentication_state.dart';
 
@@ -23,6 +24,7 @@ class AuthenticationBloc
     var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
     try {
       if (user != null) {
+        SaveData.userId = user.id;
         emit(AuthenticatedState(user));
       }
     } catch (e) {
@@ -37,6 +39,7 @@ class AuthenticationBloc
     if (user == null) {
       emit(UnauthenticatedState());
     } else {
+      SaveData.userId = user.id;
       emit(AuthenticatedState(user));
     }
   }
