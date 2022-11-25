@@ -20,7 +20,7 @@ class AuthenticationBloc
 
   Future<void> fetchUserEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
-    await Future.delayed(const Duration(seconds: 1));
+    emit(LoginLoadingState());
     var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
     try {
       if (user != null) {
@@ -34,6 +34,7 @@ class AuthenticationBloc
 
   FutureOr<void> checkUserEvent(
       CheckLoginEvent event, Emitter<AuthenticationState> emit) async {
+    emit(LoginLoadingState());
     await Future.delayed(const Duration(seconds: 1));
     var user = _userRepository.fetchAlreadyUser();
     if (user == null) {

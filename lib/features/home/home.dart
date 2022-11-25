@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
             child: Scaffold(
                 key: _scaffoldKey,
                 persistentFooterAlignment: AlignmentDirectional.bottomCenter,
-                persistentFooterButtons: [ShortOrderBar()],
+                persistentFooterButtons: [const ShortOrderBar()],
                 bottomNavigationBar: UtilityBar(scaffoldKey: _scaffoldKey),
-                body: const HomeScreen())));
+                body: const SafeArea(child: HomeScreen()))));
   }
 }
