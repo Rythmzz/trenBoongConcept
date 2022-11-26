@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../pop_up/list_card.dart';
 import '../pop_up/menu.dart';
+import '../promotion/promotion.dart';
 import 'pop_over.dart';
 
 class UtilityBar extends StatefulWidget {
@@ -54,22 +55,27 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
             },
           ),
           IconButton(
-            tooltip: ("Orders"),
-            icon: const Icon(Icons.shopping_bag),
-            onPressed: () {
-              widget.scaffoldKey.currentState!
-                  .showBottomSheet((context) => Popover(child: MenuPopup()));
-            },
-            // child: Text("Orders")
-          ),
+              tooltip: ("Orders"),
+              icon: const Icon(Icons.shopping_bag),
+              onPressed: () {
+                setState(() {
+                  persistentBottomSheetController =
+                      widget.scaffoldKey.currentState!.showBottomSheet(
+                          (context) => const Popover(child: MenuPopup()));
+                });
+              }
+              // child: Text("Orders")
+              ),
           IconButton(
-            icon: const Icon(Icons.videogame_asset),
-            tooltip: ("promotion"),
-            onPressed: () {
-              widget.scaffoldKey.currentState!
-                  .showBottomSheet((context) => Container());
-            },
-          ),
+              icon: const Icon(Icons.videogame_asset),
+              tooltip: ("promotion"),
+              onPressed: () {
+                setState(() {
+                  persistentBottomSheetController =
+                      widget.scaffoldKey.currentState!.showBottomSheet(
+                          (context) => Popover(child: PromotionPopup()));
+                });
+              }),
           IconButton(
             icon: const Icon(Icons.settings),
             tooltip: ("event"),

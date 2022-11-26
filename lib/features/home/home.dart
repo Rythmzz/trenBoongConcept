@@ -47,11 +47,13 @@ class _HomePageState extends State<HomePage> {
                       orderrepository: context.read<OrderRepository>())
                     ..add(LoadOrderEvent()))
             ],
-            child: Scaffold(
-                key: _scaffoldKey,
-                persistentFooterAlignment: AlignmentDirectional.bottomCenter,
-                persistentFooterButtons: [const ShortOrderBar()],
-                bottomNavigationBar: UtilityBar(scaffoldKey: _scaffoldKey),
-                body: const SafeArea(child: HomeScreen()))));
+            child: SafeArea(
+                child: Scaffold(
+                    key: _scaffoldKey,
+                    persistentFooterAlignment:
+                        AlignmentDirectional.bottomCenter,
+                    persistentFooterButtons: const [ShortOrderBar()],
+                    bottomNavigationBar: UtilityBar(scaffoldKey: _scaffoldKey),
+                    body: const HomeScreen()))));
   }
 }
