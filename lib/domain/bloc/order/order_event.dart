@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import '../../entity/coupon_entity.dart';
+import '../../entity/order_entity.dart';
 import '../../entity/product_entity.dart';
 
 abstract class OrderEvent extends Equatable {
@@ -14,10 +16,10 @@ class AddProductItem extends OrderEvent {
   AddProductItem(this.product);
 }
 
-class ModifyOrderMethod extends OrderEvent {
-  final int methodId;
+class AddCoupon extends OrderEvent {
+  final CouponEntity coupon;
 
-  ModifyOrderMethod(this.methodId);
+  AddCoupon(this.coupon);
 }
 
 class DecreaseProductItem extends OrderEvent {}

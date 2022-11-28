@@ -4,7 +4,6 @@ import '../../../utility/save_data.dart';
 import '../../entity/order_detail_entity.dart';
 import '../../entity/order_entity.dart';
 import '../../entity/product_entity.dart';
-import '../authentication/authentication_bloc.dart';
 import 'order_event.dart';
 import 'order_state.dart';
 
@@ -38,6 +37,11 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
     on<DecreaseProductItem>((event, emit) async {
       //do and emit something
+    });
+
+    on<AddCoupon>((event, emit) async {
+      order.coupon = event.coupon;
+      emit(AddProductItemSuccessState(order));
     });
 
     on<EmitOrder>((event, emit) async {

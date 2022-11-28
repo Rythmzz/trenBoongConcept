@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'notification_area.dart';
-import 'promotion_list.dart';
+import 'promotion_holder.dart';
 
 class PromotionPopup extends StatelessWidget {
   const PromotionPopup({super.key});
@@ -10,7 +10,7 @@ class PromotionPopup extends StatelessWidget {
     return Expanded(
         child: SingleChildScrollView(
             child: Column(
-      children: const [NotificationArea(), PromotionList()],
+      children: const [NotificationArea(), PromotionHolder()],
     )));
   }
 }

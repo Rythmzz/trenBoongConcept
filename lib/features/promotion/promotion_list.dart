@@ -1,46 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/bloc/order/order_bloc.dart';
+import '../../domain/bloc/order/order_event.dart';
+import '../../domain/entity/coupon_entity.dart';
+import 'promotion_detail.dart';
 
-import 'promotion_date.dart';
-import 'promotion_infor.dart';
+class PromotionList extends StatefulWidget {
+  PromotionList({super.key, required this.coupons});
+  final List<CouponEntity> coupons;
 
-class PromotionList extends StatelessWidget {
-  const PromotionList({super.key});
+  @override
+  State<PromotionList> createState() => _PromotionListState();
+}
+
+class _PromotionListState extends State<PromotionList> {
+  int selectedCoupon = -1;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 3000,
-        margin: const EdgeInsets.fromLTRB(18, 0, 18, 28),
-        child: Column(
-          children: [
-            for (var i in [10, 10, 2])
-              Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  height: 180,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 146, 144, 144),
-                        width: 1.0),
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                          flex: 25,
-                          child: PromotionInfor(
-                              title: 'Giảm đến 63k cho đơn hàng',
-                              details: const [
-                                'Giảm 60k món ăn và 3k phí giao hàng',
-                                'Đặt tối thiểu 150k'
-                              ])),
-                      const Divider(
-                          height: 0,
-                          color: Color.fromARGB(255, 84, 82, 82),
-                          thickness: 0.4),
-                      const Expanded(flex: 10, child: PromotionDate()),
-                    ],
-                  ))
-          ],
-        ));
+        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          for (var coupon in widget.coupons)
+            GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedCoupon = widget.coupons.indexOf(coupon);
+                  });
+                  print(selectedCoupon);
+                  context.read<OrderBloc>().add(AddCoupon(coupon));
+                },
+                child: PromotionDetail(
+                    coupon: coupon,
+                    isSelected:
+                        (widget.coupons.indexOf(coupon) == selectedCoupon)))
+        ]));
   }
 }
