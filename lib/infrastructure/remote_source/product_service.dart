@@ -1,6 +1,4 @@
 import 'dart:convert';
-import '../../domain/entity/category_entity.dart';
-import '../../domain/entity/category_products_entity.dart';
 import '../../domain/entity/product_entity.dart';
 import 'api_constant.dart';
 import 'package:http/http.dart' as http;

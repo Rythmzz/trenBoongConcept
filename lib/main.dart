@@ -7,6 +7,7 @@ import 'domain/bloc/authentication/authentication_bloc.dart';
 import 'domain/bloc/authentication/authentication_event.dart';
 import 'features/authen/sign_in/signin_screen.dart';
 import 'features/home/home.dart';
+import 'features/loading/loading_screen.dart';
 import 'infrastructure/repository/user_repository.dart';
 
 void main() {
@@ -47,9 +48,7 @@ class _MyAppState extends State<MyApp> {
                     home: HomePage(),
                   );
                 }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return LoadingScreen();
               },
             )));
   }

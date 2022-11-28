@@ -9,7 +9,7 @@ class OrderList extends StatelessWidget {
     return DefaultTextStyle(
         style: TextStyle(
             color: Colors.black,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
             fontSize: 14,
             letterSpacing: -0.2,
             wordSpacing: -0.4),

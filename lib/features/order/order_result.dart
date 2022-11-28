@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_state.dart';
+import '../loading/loading_screen.dart';
 import 'order_fail.dart';
 import 'order_success.dart';
 
@@ -41,7 +42,7 @@ class OrderResultState extends State<OrderResult> {
                   return OrderFail(
                       screenHeight: screenHeight, screenWidth: screenWidth);
                 }
-                return CircularProgressIndicator();
+                return LoadingScreen();
               }))),
     );
   }

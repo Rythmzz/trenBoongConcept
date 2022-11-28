@@ -6,7 +6,7 @@ import '../../domain/entity/order_entity.dart';
 import '../../utility/order_format.dart';
 import 'order_detail_price.dart';
 import 'order_list.dart';
-import 'order_method.dart';
+import 'order_coupon.dart';
 import 'order_screen.dart';
 
 class ShortOrderBar extends StatefulWidget {
@@ -42,13 +42,14 @@ class ShortOrderBarState extends State<ShortOrderBar> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                            OrderMethod(),
-                            SizedBox(height: 5),
+                            OrderCoupon(
+                                coupon: context.read<OrderBloc>().order.coupon),
+                            const SizedBox(height: 5),
                             OrderList(
                                 orderList: OrderFormat.getStringListOrderName(
                                     context.read<OrderBloc>().order))
                           ])),
-                      SizedBox(width: 12),
+                      const SizedBox(width: 12),
                       TextButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(

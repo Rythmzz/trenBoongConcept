@@ -1,7 +1,6 @@
-import 'package:tren_boong_concept/infrastructure/remote_source/receipt_detail_service.dart';
-import 'package:tren_boong_concept/infrastructure/remote_source/receipt_service.dart';
-
 import '../../domain/entity/order_entity.dart';
+import '../remote_source/receipt_detail_service.dart';
+import '../remote_source/receipt_service.dart';
 
 class OrderRepository {
   Future<void> createReceipt(OrderEntity order) async {
